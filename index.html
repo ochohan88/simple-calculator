@@ -6,49 +6,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <style>
-        /* ===== BASIC RESET ===== */
         * {
             box-sizing: border-box;
             font-family: Arial, sans-serif;
         }
 
         body {
-            background-color: #f4f4f4;
+            margin: 0;
+            height: 100vh;
+            background: #f4f4f4;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            margin: 0;
         }
 
         /* ===== DARK MODE ===== */
         body.dark-mode {
-            background-color: #121212;
+            background: #121212;
         }
 
         body.dark-mode .calculator {
-            background-color: #1e1e1e;
+            background: #1e1e1e;
         }
 
         body.dark-mode #display {
-            background-color: #333;
-            color: white;
+            background: #333;
+            color: #fff;
         }
 
         body.dark-mode button {
-            background-color: #444;
-            color: white;
+            background: #444;
+            color: #fff;
         }
 
-        /* ===== THEME BUTTON ===== */
+        /* ===== DARK MODE BUTTON ===== */
         .theme-btn {
             margin-bottom: 15px;
             padding: 10px 20px;
             font-size: 16px;
-            cursor: pointer;
             border: none;
             border-radius: 6px;
+            cursor: pointer;
         }
 
         /* ===== CALCULATOR ===== */
@@ -66,8 +65,8 @@
             height: 60px;
             font-size: 24px;
             text-align: right;
-            margin-bottom: 10px;
             padding: 10px;
+            margin-bottom: 10px;
         }
 
         .buttons {
@@ -79,14 +78,10 @@
         button {
             height: 60px;
             font-size: 20px;
-            cursor: pointer;
             border: none;
-            background: #e0e0e0;
             border-radius: 8px;
-        }
-
-        button:hover {
-            opacity: 0.9;
+            cursor: pointer;
+            background: #e0e0e0;
         }
 
         .zero {
@@ -131,7 +126,7 @@
     </div>
 
     <script>
-        let display = document.getElementById("display");
+        const display = document.getElementById("display");
 
         function appendValue(value) {
             display.value += value;
