@@ -1,3 +1,6 @@
+function toggleDarkMode() {
+    document.body.classList.toggle("dark-mode");
+}
 let display = document.getElementById("display");
 
 // Add numbers or symbols to the screen
@@ -38,4 +41,5 @@ document.addEventListener("keydown", function (event) {
         display.value = display.value.slice(0, -1);
     }
 });
+
 
