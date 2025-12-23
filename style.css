@@ -47,3 +47,21 @@ button:hover {
 .zero {
     grid-column: span 2;
 }
+.dark-mode {
+    background: #121212;
+}
+
+.dark-mode .calculator {
+    background: #1e1e1e;
+}
+
+.dark-mode #display {
+    background: #333;
+    color: white;
+}
+
+.dark-mode button {
+    background: #444;
+    color: white;
+}
+
