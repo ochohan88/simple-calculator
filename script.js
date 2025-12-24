@@ -42,6 +42,12 @@ document.addEventListener("keydown", function (event) {
     }
 });
 <script>
+    function vibrate() {
+    if (navigator.vibrate) {
+        navigator.vibrate(20);
+    }
+}
+
     const display = document.getElementById("display");
 
     function appendValue(value) {
@@ -84,6 +90,7 @@ document.addEventListener("keydown", function (event) {
         }
     });
 </script>
+
 
 
 
