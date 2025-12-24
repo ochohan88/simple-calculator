@@ -45,6 +45,10 @@ document.addEventListener("keydown", function (event) {
     function vibrate() {
     if (navigator.vibrate) {
         navigator.vibrate(20);
+        document.querySelectorAll("button").forEach(btn => {
+    btn.addEventListener("click", vibrate);
+});
+
     }
 }
 
@@ -90,6 +94,7 @@ document.addEventListener("keydown", function (event) {
         }
     });
 </script>
+
 
 
 
