@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Simple Online Calculator</title>
+<title>Smart Online Calculator</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
@@ -13,54 +13,53 @@
 
 body {
     margin: 0;
-    height: 100vh;
+    min-height: 100vh;
     background: #f4f4f4;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
 }
 
-/* DARK MODE */
-body.dark-mode {
+/* ===== DARK MODE ===== */
+body.dark {
     background: #121212;
+    color: white;
 }
 
-body.dark-mode .calculator {
+body.dark .calculator {
     background: #1e1e1e;
 }
 
-body.dark-mode #display {
+body.dark input,
+body.dark button {
     background: #333;
-    color: #fff;
+    color: white;
 }
 
-body.dark-mode button {
-    background: #444;
-    color: #fff;
+/* ===== TOP BUTTONS ===== */
+.top-bar {
+    margin-bottom: 10px;
 }
 
-/* BUTTON */
-.theme-btn {
-    margin-bottom: 15px;
-    padding: 10px 20px;
-    font-size: 16px;
-    border: none;
+.top-bar button {
+    padding: 8px 14px;
     border-radius: 6px;
+    border: none;
     cursor: pointer;
 }
 
-/* CALCULATOR */
+/* ===== CALCULATOR ===== */
 .calculator {
-    background: #fff;
-    padding: 20px;
+    background: white;
+    padding: 15px;
     border-radius: 12px;
     width: 100%;
-    max-width: 320px;
+    max-width: 360px;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
-#display {
+input {
     width: 100%;
     height: 60px;
     font-size: 24px;
@@ -69,65 +68,102 @@ body.dark-mode button {
     margin-bottom: 10px;
 }
 
+/* ===== BUTTON GRID ===== */
 .buttons {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
+    gap: 8px;
 }
 
 button {
-    height: 60px;
-    font-size: 20px;
-    border: none;
+    height: 55px;
+    font-size: 18px;
     border-radius: 8px;
+    border: none;
     cursor: pointer;
-    background: #e0e0e0;
+    transition: transform 0.1s;
+}
+
+button:active {
+    transform: scale(0.95);
 }
 
 .zero {
     grid-column: span 2;
+}
+
+/* ===== HISTORY ===== */
+.history {
+    margin-top: 15px;
+    max-height: 120px;
+    overflow-y: auto;
+    font-size: 14px;
+}
+
+.history-item {
+    border-bottom: 1px solid #ccc;
+    padding: 3px 0;
+}
+
+.clear-history {
+    margin-top: 5px;
+    width: 100%;
+    height: 35px;
 }
 </style>
 </head>
 
 <body>
 
-<button class="theme-btn" onclick="toggleDarkMode()">Toggle Dark Mode 🌙</button>
+<div class="top-bar">
+    <button onclick="toggleTheme()">🌙 Dark Mode</button>
+</div>
 
 <div class="calculator">
-    <input type="text" id="display" disabled>
+    <input id="display" disabled>
 
     <div class="buttons">
+        <button onclick="memoryClear()">MC</button>
+        <button onclick="memoryRecall()">MR</button>
+        <button onclick="memoryAdd()">M+</button>
+        <button onclick="memorySubtract()">M-</button>
+
         <button onclick="clearDisplay()">C</button>
-        <button onclick="appendValue('/')">÷</button>
-        <button onclick="appendValue('*')">×</button>
-        <button onclick="appendValue('-')">−</button>
+        <button onclick="toggleSign()">±</button>
+        <button onclick="percentage()">%</button>
+        <button onclick="append('/')">÷</button>
 
-        <button onclick="appendValue('7')">7</button>
-        <button onclick="appendValue('8')">8</button>
-        <button onclick="appendValue('9')">9</button>
-        <button onclick="appendValue('+')">+</button>
+        <button onclick="append('7')">7</button>
+        <button onclick="append('8')">8</button>
+        <button onclick="append('9')">9</button>
+        <button onclick="append('*')">×</button>
 
-        <button onclick="appendValue('4')">4</button>
-        <button onclick="appendValue('5')">5</button>
-        <button onclick="appendValue('6')">6</button>
+        <button onclick="append('4')">4</button>
+        <button onclick="append('5')">5</button>
+        <button onclick="append('6')">6</button>
+        <button onclick="append('-')">−</button>
 
-        <button onclick="appendValue('1')">1</button>
-        <button onclick="appendValue('2')">2</button>
-        <button onclick="appendValue('3')">3</button>
+        <button onclick="append('1')">1</button>
+        <button onclick="append('2')">2</button>
+        <button onclick="append('3')">3</button>
+        <button onclick="append('+')">+</button>
 
-        <button class="zero" onclick="appendValue('0')">0</button>
-        <button onclick="appendValue('.')">.</button>
+        <button class="zero" onclick="append('0')">0</button>
+        <button onclick="append('.')">.</button>
         <button onclick="calculate()">=</button>
     </div>
+
+    <div class="history" id="history"></div>
+    <button class="clear-history" onclick="clearHistory()">Clear History</button>
 </div>
 
 <script>
-const display = document.getElementById("display");
+let display = document.getElementById("display");
+let historyBox = document.getElementById("history");
+let memory = Number(localStorage.getItem("memory")) || 0;
 
-function appendValue(val) {
-    const last = display.value.slice(-1);
-    if ("+-*/.".includes(val) && "+-*/.".includes(last)) return;
+/* ===== BASIC ===== */
+function append(val) {
     display.value += val;
 }
 
@@ -137,34 +173,85 @@ function clearDisplay() {
 
 function calculate() {
     try {
-        display.value = eval(display.value);
+        let result = eval(display.value);
+        saveHistory(display.value + " = " + result);
+        display.value = result;
     } catch {
         display.value = "Error";
     }
 }
 
-function toggleDarkMode() {
-    document.body.classList.toggle("dark-mode");
-    localStorage.setItem(
-        "theme",
-        document.body.classList.contains("dark-mode") ? "dark" : "light"
-    );
+/* ===== EXTRA FEATURES ===== */
+function percentage() {
+    display.value = display.value / 100;
 }
 
-if (localStorage.getItem("theme") === "dark") {
-    document.body.classList.add("dark-mode");
+function toggleSign() {
+    display.value = display.value * -1;
 }
 
-/* KEYBOARD SUPPORT */
-document.addEventListener("keydown", (e) => {
-    if ("0123456789+-*/.".includes(e.key)) {
-        appendValue(e.key);
-    }
+/* ===== MEMORY ===== */
+function memoryAdd() {
+    memory += Number(display.value || 0);
+    localStorage.setItem("memory", memory);
+}
+
+function memorySubtract() {
+    memory -= Number(display.value || 0);
+    localStorage.setItem("memory", memory);
+}
+
+function memoryRecall() {
+    display.value = memory;
+}
+
+function memoryClear() {
+    memory = 0;
+    localStorage.setItem("memory", 0);
+}
+
+/* ===== HISTORY ===== */
+function saveHistory(item) {
+    let history = JSON.parse(localStorage.getItem("history")) || [];
+    history.unshift(item);
+    localStorage.setItem("history", JSON.stringify(history));
+    renderHistory();
+}
+
+function renderHistory() {
+    let history = JSON.parse(localStorage.getItem("history")) || [];
+    historyBox.innerHTML = "";
+    history.forEach(h => {
+        let div = document.createElement("div");
+        div.className = "history-item";
+        div.innerText = h;
+        historyBox.appendChild(div);
+    });
+}
+
+function clearHistory() {
+    localStorage.removeItem("history");
+    renderHistory();
+}
+
+/* ===== DARK MODE ===== */
+function toggleTheme() {
+    document.body.classList.toggle("dark");
+    localStorage.setItem("theme", document.body.classList.contains("dark"));
+}
+
+if (localStorage.getItem("theme") === "true") {
+    document.body.classList.add("dark");
+}
+
+/* ===== KEYBOARD ===== */
+document.addEventListener("keydown", e => {
+    if ("0123456789+-*/.".includes(e.key)) append(e.key);
     if (e.key === "Enter") calculate();
     if (e.key === "Backspace") display.value = display.value.slice(0, -1);
-    if (e.key === "Escape") clearDisplay(); // ✅ ESC FIX
+    if (e.key === "Escape") clearDisplay();
+    if (e.key === "%") percentage();
 });
-</script>
 
-</body>
-</html>
+/* LOAD HISTORY */
+render
