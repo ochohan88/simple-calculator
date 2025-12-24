@@ -108,5 +108,10 @@ body.dark-mode button[onclick="calculate()"] {
 body.dark-mode button[onclick="clearDisplay()"] {
     background: #c62828;
 }
+button:active {
+    transform: scale(0.95);
+    transition: transform 0.05s ease;
+}
+
 
 
