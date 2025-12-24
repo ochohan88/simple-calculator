@@ -64,4 +64,49 @@ button:hover {
     background: #444;
     color: white;
 }
+/* ===== UI IMPROVEMENTS ===== */
+button {
+    transition: transform 0.1s ease, background-color 0.2s ease;
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+/* Operator buttons */
+button[onclick*="+"] ,
+button[onclick*="-"] ,
+button[onclick*="*"] ,
+button[onclick*="/"] {
+    background: #ffcc80;
+}
+
+/* Equal button */
+button[onclick="calculate()"] {
+    background: #4caf50;
+    color: white;
+}
+
+/* Clear button */
+button[onclick="clearDisplay()"] {
+    background: #f44336;
+    color: white;
+}
+
+/* Dark mode overrides */
+body.dark-mode button[onclick*="+"],
+body.dark-mode button[onclick*="-"],
+body.dark-mode button[onclick*="*"],
+body.dark-mode button[onclick*="/"] {
+    background: #ff9800;
+}
+
+body.dark-mode button[onclick="calculate()"] {
+    background: #2e7d32;
+}
+
+body.dark-mode button[onclick="clearDisplay()"] {
+    background: #c62828;
+}
+
 
