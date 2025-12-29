@@ -2,43 +2,108 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<title>Free Online Calculator – Simple, Fast & Accurate</title>
 
-<title>Free Online Calculator – Percentage, Memory, History</title>
-
-<meta name="description" content="Free online calculator with percentage, memory buttons, dark mode, keyboard support and history. Fast and mobile friendly.">
-<meta name="keywords" content="online calculator, percentage calculator, free calculator">
+<meta name="description" content="Free online calculator with percentage, memory, history, dark mode and full keyboard support.">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="robots" content="index, follow">
-<meta name="author" content="Simple Calculator">
-
-<meta name="google-site-verification" content="MGw2dosY2iJOexMsTX-mJ6e-pFU5fREGbNL95iqg4uo">
 
 <style>
-*{box-sizing:border-box;font-family:Arial,sans-serif}
-body{margin:0;padding:20px;background:#f4f4f4;display:flex;flex-direction:column;align-items:center}
-body.dark-mode{background:#121212;color:#fff}
-.calculator{background:#fff;padding:20px;border-radius:12px;box-shadow:0 0 10px rgba(0,0,0,.1);max-width:340px;width:100%}
-body.dark-mode .calculator{background:#1e1e1e}
-#display{width:100%;height:60px;font-size:26px;text-align:right;padding:10px;margin-bottom:10px}
-.buttons{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
-button{height:60px;font-size:18px;border:none;border-radius:8px;background:#e0e0e0;cursor:pointer}
-body.dark-mode button{background:#444;color:#fff}
-.wide{grid-column:span 2}
-.history{max-width:340px;width:100%;margin-top:20px}
-.history-list{background:#fff;border-radius:8px;padding:10px;max-height:150px;overflow:auto}
-body.dark-mode .history-list{background:#2a2a2a}
+* { box-sizing: border-box; font-family: Arial, sans-serif; }
+
+body {
+    margin: 0;
+    background: #f4f4f4;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+body.dark-mode { background:#121212; color:#fff; }
+
+h1 { margin-bottom: 5px; }
+p { margin-top: 0; text-align:center; }
+
+.calculator {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 340px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+body.dark-mode .calculator { background:#1e1e1e; }
+
+#display {
+    width:100%;
+    height:60px;
+    font-size:26px;
+    text-align:right;
+    padding:10px;
+    margin-bottom:10px;
+}
+
+.buttons {
+    display:grid;
+    grid-template-columns: repeat(5,1fr);
+    gap:10px;
+}
+
+button {
+    height:60px;
+    font-size:18px;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    background:#e0e0e0;
+}
+
+body.dark-mode button { background:#444; color:white; }
+
+.wide { grid-column: span 2; }
+
+.history-container {
+    margin-top:20px;
+    width:100%;
+    max-width:340px;
+}
+
+.history-list {
+    max-height:150px;
+    overflow-y:auto;
+    background:#fff;
+    padding:10px;
+    border:1px solid #ccc;
+    border-radius:8px;
+}
+
+body.dark-mode .history-list {
+    background:#2a2a2a;
+    border-color:#555;
+}
+
+footer {
+    margin-top: 25px;
+    font-size: 14px;
+}
+footer a {
+    margin: 0 6px;
+    text-decoration: none;
+}
 </style>
 </head>
 
 <body>
 
 <h1>Free Online Calculator</h1>
-<p>Fast, free calculator with percentage, memory, history and keyboard support.</p>
+<p>Fast, simple calculator with percentage, memory & history</p>
 
-<button onclick="toggleDarkMode()">Toggle Dark Mode</button>
+<button onclick="toggleDarkMode()">Toggle Dark Mode 🌙</button>
 
 <div class="calculator">
-<input id="display" disabled>
+<input type="text" id="display" disabled>
 
 <div class="buttons">
 <button onclick="memoryClear()">MC</button>
@@ -48,105 +113,98 @@ body.dark-mode .history-list{background:#2a2a2a}
 <button onclick="clearDisplay()">C</button>
 
 <button onclick="toggleSign()">±</button>
-<button onclick="percent()">%</button>
-<button onclick="op('/')">÷</button>
-<button onclick="op('*')">×</button>
-<button onclick="op('-')">−</button>
+<button onclick="calculatePercent()">%</button>
+<button onclick="appendOperator('/')">÷</button>
+<button onclick="appendOperator('*')">×</button>
+<button onclick="appendOperator('-')">−</button>
 
-<button onclick="add('7')">7</button>
-<button onclick="add('8')">8</button>
-<button onclick="add('9')">9</button>
-<button onclick="op('+')">+</button>
-<button onclick="add('4')">4</button>
+<button onclick="appendValue('7')">7</button>
+<button onclick="appendValue('8')">8</button>
+<button onclick="appendValue('9')">9</button>
+<button onclick="appendOperator('+')">+</button>
+<button onclick="appendValue('4')">4</button>
 
-<button onclick="add('5')">5</button>
-<button onclick="add('6')">6</button>
-<button onclick="add('1')">1</button>
-<button onclick="add('2')">2</button>
-<button onclick="add('3')">3</button>
+<button onclick="appendValue('5')">5</button>
+<button onclick="appendValue('6')">6</button>
+<button onclick="appendValue('1')">1</button>
+<button onclick="appendValue('2')">2</button>
+<button onclick="appendValue('3')">3</button>
 
-<button class="wide" onclick="add('0')">0</button>
-<button onclick="add('.')">.</button>
-<button onclick="calc()">=</button>
+<button class="wide" onclick="appendValue('0')">0</button>
+<button onclick="appendValue('.')">.</button>
+<button onclick="calculateResult()">=</button>
 </div>
 </div>
 
-<div class="history">
-<div id="history" class="history-list"></div>
+<div class="history-container">
+<div id="historyList" class="history-list"></div>
 <button onclick="clearHistory()">Clear History</button>
 </div>
 
-<p>
+<footer>
 <a href="about.html">About</a> |
 <a href="contact.html">Contact</a> |
 <a href="privacy.html">Privacy Policy</a>
-</p>
+</footer>
 
 <script>
-const d=document.getElementById("display");
-const h=document.getElementById("history");
-let m=0;
+let display = document.getElementById("display");
+let historyListEl = document.getElementById("historyList");
+let memory = 0;
 
-function add(v){d.value+=v}
-function op(o){d.value+=" "+o+" "}
-function clearDisplay(){d.value=""}
-function calc(){
- try{
-  const r=eval(d.value);
-  addHistory(d.value+" = "+r);
-  d.value=r;
- }catch{d.value="Error"}
+function appendValue(v){ display.value += v; }
+function appendOperator(o){ display.value += " " + o + " "; }
+function clearDisplay(){ display.value=""; }
+function toggleSign(){
+    if(display.value)
+        display.value = display.value.startsWith("-") ? display.value.slice(1) : "-" + display.value;
 }
-function percent(){d.value=parseFloat(d.value)/100||""}
-function toggleSign(){d.value=d.value.startsWith("-")?d.value.slice(1):"-"+d.value}
-
+function calculatePercent(){
+    let v=parseFloat(display.value);
+    if(!isNaN(v)) display.value = v/100;
+}
+function calculateResult(){
+    try{
+        let r=eval(display.value);
+        addHistory(display.value+" = "+r);
+        display.value=r;
+    }catch{ display.value="Error"; }
+}
 function addHistory(t){
- const div=document.createElement("div");
- div.textContent=t;
- h.prepend(div);
- localStorage.setItem("history",h.innerHTML);
+    let d=document.createElement("div");
+    d.textContent=t;
+    historyListEl.prepend(d);
+    localStorage.setItem("calcHistory",historyListEl.innerHTML);
 }
-function clearHistory(){h.innerHTML="";localStorage.removeItem("history")}
+function clearHistory(){
+    historyListEl.innerHTML="";
+    localStorage.removeItem("calcHistory");
+}
+function memoryAdd(){ memory+=parseFloat(display.value)||0; }
+function memorySub(){ memory-=parseFloat(display.value)||0; }
+function memoryRecall(){ display.value+=memory; }
+function memoryClear(){ memory=0; }
 
-function memoryAdd(){m+=parseFloat(d.value)||0}
-function memorySub(){m-=parseFloat(d.value)||0}
-function memoryRecall(){d.value+=m}
-function memoryClear(){m=0}
+if(localStorage.getItem("calcHistory"))
+    historyListEl.innerHTML=localStorage.getItem("calcHistory");
 
 document.addEventListener("keydown",e=>{
- if("0123456789.".includes(e.key))add(e.key)
- if("+-*/".includes(e.key))op(e.key)
- if(e.key==="Enter")calc()
- if(e.key==="Escape")clearDisplay()
-})
+    if("0123456789".includes(e.key)) appendValue(e.key);
+    if(["+","-","*","/"].includes(e.key)) appendOperator(e.key);
+    if(e.key==="Enter") calculateResult();
+    if(e.key==="Escape") clearDisplay();
+    if(e.key==="Backspace") display.value=display.value.slice(0,-1);
+    if(e.key==="%") calculatePercent();
+});
 
 function toggleDarkMode(){
- document.body.classList.toggle("dark-mode");
- localStorage.setItem("theme",document.body.classList.contains("dark-mode")?"dark":"light");
+    document.body.classList.toggle("dark-mode");
+    localStorage.setItem("theme",
+        document.body.classList.contains("dark-mode")?"dark":"light");
 }
-if(localStorage.getItem("theme")==="dark")document.body.classList.add("dark-mode")
-if(localStorage.getItem("history"))h.innerHTML=localStorage.getItem("history")
+if(localStorage.getItem("theme")==="dark")
+    document.body.classList.add("dark-mode");
 </script>
-
- <footer style="margin-top:30px; font-size:14px; text-align:center;">
-  <p>© 2025 Simple Calculator. All rights reserved.</p>
-  <p>
-    <a href="privacy.html">Privacy Policy</a> |
-    <a href="about.html">About Us</a> |
-    <a href="contact.html">Contact</a>
-  </p>
-</footer>
 
 </body>
 </html>
-
-<p style="font-size:14px; margin-top:15px; text-align:center;">
-This calculator is free to use. No data is stored except calculation history in your browser.
-</p>
-
-<hr>
-<p>
-<a href="about.html">About Us</a> |
-<a href="contact.html">Contact Us</a> |
-<a href="privacy.html">Privacy Policy</a>
-</p>
