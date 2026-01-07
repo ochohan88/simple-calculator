@@ -7,7 +7,7 @@
 <meta name="description" content="Free online calculator with percentage, memory buttons, history, dark mode and full keyboard support.">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- ✅ GOOGLE ADSENSE CODE (DO NOT TOUCH) -->
+<!-- ✅ GOOGLE ADSENSE CODE -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4250333550436911"
      crossorigin="anonymous"></script>
 
@@ -26,113 +26,122 @@ body {
 
 body.dark-mode { background:#121212; color:#fff; }
 
-header {
-    text-align: center;
-    margin-bottom: 15px;
-}
+header { text-align:center; margin-bottom:15px; }
 
 .calculator {
-    background: white;
-    padding: 20px;
-    border-radius: 12px;
-    width: 100%;
-    max-width: 340px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    background:#fff;
+    padding:20px;
+    border-radius:12px;
+    width:100%;
+    max-width:340px;
+    box-shadow:0 0 10px rgba(0,0,0,0.1);
 }
 
 body.dark-mode .calculator { background:#1e1e1e; }
 
 #display {
-    width: 100%;
-    height: 60px;
-    font-size: 26px;
-    margin-bottom: 10px;
-    padding: 10px;
-    text-align: right;
+    width:100%;
+    height:60px;
+    font-size:26px;
+    margin-bottom:10px;
+    padding:10px;
+    text-align:right;
 }
 
 .buttons {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 10px;
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:10px;
 }
 
 button {
-    height: 60px;
-    font-size: 18px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    background: #e0e0e0;
+    height:60px;
+    font-size:18px;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    background:#e0e0e0;
 }
 
 body.dark-mode button { background:#444; color:#fff; }
 
 .wide { grid-column: span 2; }
 
-.history-container {
-    margin-top: 20px;
-    width: 100%;
-    max-width: 340px;
-}
-
-.history-list {
-    max-height: 150px;
-    overflow-y: auto;
-    background: #fff;
-    padding: 10px;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-}
-
-body.dark-mode .history-list {
-    background:#2a2a2a;
-    border-color:#555;
-}
-
 footer {
-    margin-top: auto;
-    text-align: center;
-    font-size: 14px;
-    padding: 15px 0;
+    margin-top:auto;
+    text-align:center;
+    font-size:14px;
+    padding:15px 0;
 }
-
-footer a {
-    margin: 0 8px;
-    text-decoration: none;
-    color: inherit;
-}
+footer a { margin:0 6px; text-decoration:none; color:inherit; }
 </style>
 </head>
 
 <body>
 
 <header>
-    <h1>Free Online Calculator</h1>
-    <p>Fast, simple & free calculator for daily use</p>
-    <button onclick="toggleDarkMode()">Toggle Dark Mode</button>
+  <h1>Free Online Calculator</h1>
+  <p>Fast, simple & free calculator</p>
+  <button onclick="toggleDarkMode()">Toggle Dark Mode</button>
 </header>
 
-<section style="max-width:700px; margin:20px auto; font-size:16px; line-height:1.6;">
+<section style="max-width:700px; margin:20px auto; font-size:16px;">
   <h2>About hikball.store Calculator</h2>
-  <p>
-    hikball.store provides a free online calculator that helps users perform
-    daily calculations quickly and accurately.
-  </p>
+  <p>This free calculator helps you perform daily calculations quickly and easily.</p>
 </section>
 
 <div class="calculator">
-    <input type="text" id="display" disabled>
+  <input type="text" id="display" disabled>
+
+  <div class="buttons">
+    <button onclick="clearDisplay()">C</button>
+    <button onclick="appendOperator('/')">÷</button>
+    <button onclick="appendOperator('*')">×</button>
+    <button onclick="appendOperator('-')">−</button>
+    <button onclick="appendOperator('+')">+</button>
+
+    <button onclick="appendValue('7')">7</button>
+    <button onclick="appendValue('8')">8</button>
+    <button onclick="appendValue('9')">9</button>
+    <button onclick="appendValue('4')">4</button>
+    <button onclick="appendValue('5')">5</button>
+
+    <button onclick="appendValue('6')">6</button>
+    <button onclick="appendValue('1')">1</button>
+    <button onclick="appendValue('2')">2</button>
+    <button onclick="appendValue('3')">3</button>
+    <button class="wide" onclick="appendValue('0')">0</button>
+
+    <button onclick="appendValue('.')">.</button>
+    <button onclick="calculateResult()">=</button>
+  </div>
 </div>
 
 <footer>
-    <p>
-        <a href="about.html">About Us</a> |
-        <a href="contact.html">Contact Us</a> |
-        <a href="privacy.html">Privacy Policy</a>
-    </p>
-    <p>© 2025 hikball.store. All rights reserved.</p>
+  <p>
+    <a href="about.html">About</a> |
+    <a href="contact.html">Contact</a> |
+    <a href="privacy.html">Privacy</a>
+  </p>
+  <p>© 2025 hikball.store. All rights reserved.</p>
 </footer>
+
+<script>
+let display = document.getElementById("display");
+
+function appendValue(v){ display.value += v; }
+function appendOperator(o){ display.value += " " + o + " "; }
+function clearDisplay(){ display.value = ""; }
+
+function calculateResult(){
+  try { display.value = eval(display.value); }
+  catch { display.value = "Error"; }
+}
+
+function toggleDarkMode(){
+  document.body.classList.toggle("dark-mode");
+}
+</script>
 
 </body>
 </html>
