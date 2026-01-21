@@ -1,1 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Percentage Calculator – Calculate Percentage Online Free</title>
+  <meta name="description" content="Free percentage calculator to calculate percentage easily. Simple online percentage calculator for students and professionals.">
+</head>
+<body>
+
+<h1>Percentage Calculator</h1>
+
+<p>
+A percentage calculator helps you calculate percentage easily without manual calculations.
+Students, teachers, and office workers use percentage calculations daily.
+This free online percentage calculator gives instant and accurate results.
+</p>
+
+<h2>Percentage Calculator Tool</h2>
+
+<input type="number" id="number" placeholder="Enter number">
+<br><br>
+<input type="number" id="percent" placeholder="Enter percentage">
+<br><br>
+<button onclick="calculate()">Calculate</button>
+
+<p id="result"></p>
+
+<script>
+function calculate() {
+  var num = document.getElementById("number").value;
+  var per = document.getElementById("percent").value;
+  var res = (num * per) / 100;
+  document.getElementById("result").innerHTML = "Result: " + res;
+}
+</script>
+
+<h2>How to Use Percentage Calculator</h2>
+<ol>
+  <li>Enter the number</li>
+  <li>Enter percentage</li>
+  <li>Click calculate</li>
+  <li>Get instant result</li>
+</ol>
+
+<h2>Examples</h2>
+<p>What is 20% of 500? Answer: 100</p>
+<p>What is 10% of 200? Answer: 20</p>
+
+<h2>FAQs</h2>
+<p><b>What is percentage?</b><br>Percentage means a number out of 100.</p>
+<p><b>Is this calculator free?</b><br>Yes, this calculator is 100% free.</p>
+
+<p>
+Try our <a href="/">Simple Calculator</a> |
+Age Calculator (coming soon) |
+EMI Calculator (coming soon)
+</p>
+
+</body>
+</html>
 
