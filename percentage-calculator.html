@@ -3,59 +3,105 @@
 <head>
   <meta charset="UTF-8">
   <title>Percentage Calculator – Calculate Percentage Online Free</title>
-  <meta name="description" content="Free percentage calculator to calculate percentage easily. Simple online percentage calculator for students and professionals.">
+
+  <meta name="description" content="Free online percentage calculator. Easily calculate percentage for exams, marks, salary, discount, and business. Simple and fast tool.">
+  <meta name="keywords" content="percentage calculator, calculate percentage, online percentage calculator, percentage formula">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 700px;
+      margin: auto;
+      padding: 15px;
+      line-height: 1.6;
+    }
+    input, button {
+      padding: 8px;
+      width: 100%;
+      max-width: 300px;
+      margin-bottom: 10px;
+    }
+    button {
+      cursor: pointer;
+    }
+  </style>
 </head>
+
 <body>
-<a href="percentage-calculator.html">Percentage Calculator</a>
+
 <h1>Percentage Calculator</h1>
 
 <p>
-A percentage calculator helps you calculate percentage easily without manual calculations.
-Students, teachers, and office workers use percentage calculations daily.
-This free online percentage calculator gives instant and accurate results.
+This free Percentage Calculator helps you calculate percentage easily and quickly.
+It is useful for students, teachers, office workers, and business owners.
+You can calculate exam marks, discounts, salary percentage, and more without any manual formula.
+Our percentage calculator works on mobile, tablet, and desktop devices.
 </p>
 
 <h2>Percentage Calculator Tool</h2>
 
-<input type="number" id="number" placeholder="Enter number">
-<br><br>
-<input type="number" id="percent" placeholder="Enter percentage">
-<br><br>
-<button onclick="calculate()">Calculate</button>
+<label>Enter Number:</label><br>
+<input type="number" id="number" placeholder="Example: 500">
 
-<p id="result"></p>
+<label>Enter Percentage (%):</label><br>
+<input type="number" id="percent" placeholder="Example: 20">
+
+<button onclick="calculate()">Calculate Percentage</button>
+
+<p id="result"><b></b></p>
 
 <script>
 function calculate() {
   var num = document.getElementById("number").value;
   var per = document.getElementById("percent").value;
+
+  if (num === "" || per === "") {
+    document.getElementById("result").innerHTML = "Please enter both values.";
+    return;
+  }
+
   var res = (num * per) / 100;
-  document.getElementById("result").innerHTML = "Result: " + res;
+  document.getElementById("result").innerHTML =
+    "<b>Result:</b> " + per + "% of " + num + " = " + res;
 }
 </script>
 
 <h2>How to Use Percentage Calculator</h2>
 <ol>
-  <li>Enter the number</li>
-  <li>Enter percentage</li>
-  <li>Click calculate</li>
-  <li>Get instant result</li>
+  <li>Enter the number you want to calculate percentage of</li>
+  <li>Enter the percentage value</li>
+  <li>Click on calculate button</li>
+  <li>Get instant and accurate result</li>
 </ol>
 
-<h2>Examples</h2>
-<p>What is 20% of 500? Answer: 100</p>
-<p>What is 10% of 200? Answer: 20</p>
+<h2>Percentage Calculation Examples</h2>
+<p>✔ What is 20% of 500? <b>Answer: 100</b></p>
+<p>✔ What is 10% of 200? <b>Answer: 20</b></p>
+<p>✔ What is 15% of 1000? <b>Answer: 150</b></p>
 
-<h2>FAQs</h2>
-<p><b>What is percentage?</b><br>Percentage means a number out of 100.</p>
-<p><b>Is this calculator free?</b><br>Yes, this calculator is 100% free.</p>
+<h2>Frequently Asked Questions (FAQs)</h2>
+
+<p><b>What is percentage?</b><br>
+Percentage means a number or ratio expressed out of 100.
+</p>
+
+<p><b>Is this percentage calculator free?</b><br>
+Yes, this calculator is 100% free and unlimited.
+</p>
+
+<p><b>Can I use this calculator on mobile?</b><br>
+Yes, it works perfectly on mobile phones, tablets, and computers.
+</p>
+
+<hr>
 
 <p>
-Try our <a href="/">Simple Calculator</a> |
-Age Calculator (coming soon) |
-EMI Calculator (coming soon)
+👉 Try our other tools:<br>
+<a href="/">Simple Calculator</a> |
+<a href="age-calculator.html">Age Calculator</a> |
+EMI Calculator (Coming Soon)
 </p>
 
 </body>
 </html>
-
