@@ -2,37 +2,63 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Age Calculator | Calculate Your Age Online</title>
-  <meta name="description" content="Free age calculator. Calculate your exact age in years, months, and days instantly.">
+  <title>Age Calculator – Calculate Your Exact Age Online</title>
+
+  <meta name="description" content="Free online age calculator to calculate your exact age in years, months, and days. Easy DOB input, fast and accurate results.">
+  <meta name="keywords" content="age calculator, calculate age, dob age calculator, online age calculator">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 700px;
+      margin: auto;
+      padding: 15px;
+      line-height: 1.6;
+    }
+    input, button {
+      padding: 8px;
+      width: 100%;
+      max-width: 300px;
+      margin-bottom: 10px;
+    }
+    button {
+      cursor: pointer;
+    }
+  </style>
 </head>
+
 <body>
 
 <h1>Age Calculator</h1>
 
-<p>Enter your date of birth to calculate your exact age.</p>
+<p>
+This free Age Calculator helps you calculate your exact age in years, months, and days.
+Simply enter your date of birth in an easy format and get instant results.
+This tool is useful for students, teachers, job applications, and official forms.
+</p>
 
-<label>Date of Birth:</label>
-<input type="text" id="dob" placeholder="DD-MM-YYYY">
+<h2>Age Calculator Tool</h2>
+
+<label>Enter Date of Birth (DD-MM-YYYY):</label><br>
+<input type="text" id="dob" placeholder="Example: 12-08-1995">
+
 <button onclick="calculateAge()">Calculate Age</button>
 
-<p id="result"></p>
-
-<br>
-<a href="index.html">Home</a>
+<p id="result"><b></b></p>
 
 <script>
 function calculateAge() {
   var dob = document.getElementById("dob").value;
 
   if (!dob) {
-    document.getElementById("result").innerText = "Please enter your date of birth.";
+    document.getElementById("result").innerHTML = "Please enter your date of birth.";
     return;
   }
 
   var parts = dob.split("-");
   if (parts.length !== 3) {
-    document.getElementById("result").innerText = "Use format DD-MM-YYYY";
+    document.getElementById("result").innerHTML = "Use format DD-MM-YYYY";
     return;
   }
 
@@ -44,7 +70,7 @@ function calculateAge() {
   var today = new Date();
 
   if (isNaN(birthDate)) {
-    document.getElementById("result").innerText = "Invalid date format.";
+    document.getElementById("result").innerHTML = "Invalid date entered.";
     return;
   }
 
@@ -62,10 +88,41 @@ function calculateAge() {
     ageMonths += 12;
   }
 
-  document.getElementById("result").innerText =
-    "Your age is " + ageYears + " years, " + ageMonths + " months, and " + ageDays + " days.";
+  document.getElementById("result").innerHTML =
+    "<b>Your Age:</b> " + ageYears + " years, " + ageMonths + " months, " + ageDays + " days.";
 }
 </script>
+
+<h2>How to Use Age Calculator</h2>
+<ol>
+  <li>Enter your date of birth</li>
+  <li>Use DD-MM-YYYY format</li>
+  <li>Click calculate</li>
+  <li>Get exact age instantly</li>
+</ol>
+
+<h2>Age Calculator Examples</h2>
+<p>✔ DOB: 01-01-2000 → Age depends on today’s date</p>
+<p>✔ DOB: 15-08-1990 → Exact age in years, months & days</p>
+
+<h2>Frequently Asked Questions (FAQs)</h2>
+
+<p><b>Is this age calculator free?</b><br>
+Yes, this age calculator is completely free.
+</p>
+
+<p><b>Can I use this calculator for job forms?</b><br>
+Yes, it gives accurate age for official use.
+</p>
+
+<hr>
+
+<p>
+👉 Try our other tools:<br>
+<a href="/">Simple Calculator</a> |
+<a href="percentage-calculator.html">Percentage Calculator</a> |
+EMI Calculator (Coming Soon)
+</p>
 
 </body>
 </html>
