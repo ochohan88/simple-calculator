@@ -1,269 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Free Online Calculator – Simple, Fast & Accurate</title>
+  <meta charset="UTF-8">
+  <title>Free Online Calculators – Simple Tools</title>
 
-<meta name="description" content="Free online calculator with percentage, memory buttons, history, dark mode and full keyboard support.">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Free online calculators including Percentage Calculator and Age Calculator. Simple, fast, and easy tools for everyone.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- ✅ GOOGLE ADSENSE CODE (DO NOT TOUCH) -->
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4250333550436911"
-     crossorigin="anonymous"></script>
-
-<style>
-* { box-sizing: border-box; font-family: Arial, sans-serif; }
-
-body {
-     <h2>Our Calculators</h2>
-<ul>
-  <li><a href="percentage-calculator.html">Percentage Calculator</a></li>
-  <li><a href="age-calculator.html">Age Calculator</a></li>
-  <li><a href="#">EMI Calculator (Coming Soon)</a></li>
-  <li><a href="#">Zakat Calculator (Coming Soon)</a></li>
-  <li><a href="#">GST Calculator (Coming Soon)</a></li>
-</ul>
-    margin: 0;
-    background: #f4f4f4;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-height: 100vh;
-    padding: 20px;
-}
-
-body.dark-mode { background:#121212; color:#fff; }
-
-header {
-    text-align: center;
-    margin-bottom: 15px;
-}
-
-.calculator {
-    background: white;
-    padding: 20px;
-    border-radius: 12px;
-    width: 100%;
-    max-width: 340px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-}
-
-body.dark-mode .calculator { background:#1e1e1e; }
-
-#display {
-    width: 100%;
-    height: 60px;
-    font-size: 26px;
-    margin-bottom: 10px;
-    padding: 10px;
-    text-align: right;
-}
-
-.buttons {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 10px;
-}
-
-button {
-    height: 60px;
-    font-size: 18px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    background: #e0e0e0;
-}
-
-body.dark-mode button { background:#444; color:#fff; }
-
-.wide { grid-column: span 2; }
-
-.history-container {
-    margin-top: 20px;
-    width: 100%;
-    max-width: 340px;
-}
-
-.history-list {
-    max-height: 150px;
-    overflow-y: auto;
-    background: #fff;
-    padding: 10px;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-}
-
-body.dark-mode .history-list {
-    background:#2a2a2a;
-    border-color:#555;
-}
-
-footer {
-    margin-top: auto;
-    text-align: center;
-    font-size: 14px;
-    padding: 15px 0;
-}
-
-footer a {
-    margin: 0 8px;
-    text-decoration: none;
-    color: inherit;
-}
-</style>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: auto;
+      padding: 20px;
+      line-height: 1.6;
+    }
+    h1 {
+      text-align: center;
+    }
+    .menu a {
+      display: block;
+      font-size: 20px;
+      margin: 15px 0;
+      text-decoration: none;
+      color: #0066cc;
+    }
+    .menu a:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
 
 <body>
 
-<header>
-    <h1>Free Online Calculator</h1>
-    <p>Fast, simple & free calculator for daily use</p>
-    <button onclick="toggleDarkMode()">Toggle Dark Mode</button>
-</header>
+<h1>Free Online Calculators</h1>
 
-<!-- ✅ ABOUT SECTION (ADSENSE SAFE CONTENT) -->
-<section style="max-width:700px; margin:20px auto; font-size:16px; line-height:1.6;">
-  <h2>About hikball.store Calculator</h2>
-  <p>
-    hikball.store provides a free online calculator designed to help users perform
-    everyday calculations quickly and easily. Whether you are a student, office worker,
-    shop owner, or freelancer, this calculator can save your time and reduce errors.
-  </p>
+<p>Welcome! Select a calculator below:</p>
 
-  <p>
-    Our calculator supports basic arithmetic operations such as addition, subtraction,
-    multiplication, and division. It also includes advanced features like percentage
-    calculation, memory buttons (M+, M-, MR), calculation history, and dark mode for
-    comfortable use at night.
-  </p>
-
-  <p>
-    Unlike many complicated tools, this calculator works directly in your browser.
-    No registration, no downloads, and no personal data collection. The website is
-    optimized for both mobile phones and desktop computers, ensuring smooth performance
-    on all devices.
-  </p>
-
-  <p>
-    We continuously improve hikball.store to provide a fast, secure, and user-friendly
-    experience. If you have any suggestions or feedback, feel free to contact us.
-  </p>
-</section>
-
-<div class="calculator">
-    <input type="text" id="display" disabled>
-
-    <div class="buttons">
-        <button onclick="memoryClear()">MC</button>
-        <button onclick="memoryRecall()">MR</button>
-        <button onclick="memoryAdd()">M+</button>
-        <button onclick="memorySub()">M-</button>
-        <button onclick="clearDisplay()">C</button>
-
-        <button onclick="toggleSign()">±</button>
-        <button onclick="calculatePercent()">%</button>
-        <button onclick="appendOperator('/')">÷</button>
-        <button onclick="appendOperator('*')">×</button>
-        <button onclick="appendOperator('-')">−</button>
-
-        <button onclick="appendValue('7')">7</button>
-        <button onclick="appendValue('8')">8</button>
-        <button onclick="appendValue('9')">9</button>
-        <button onclick="appendOperator('+')">+</button>
-        <button onclick="appendValue('4')">4</button>
-
-        <button onclick="appendValue('5')">5</button>
-        <button onclick="appendValue('6')">6</button>
-        <button onclick="appendValue('1')">1</button>
-        <button onclick="appendValue('2')">2</button>
-        <button onclick="appendValue('3')">3</button>
-
-        <button class="wide" onclick="appendValue('0')">0</button>
-        <button onclick="appendValue('.')">.</button>
-        <button onclick="calculateResult()">=</button>
-    </div>
+<div class="menu">
+  <a href="percentage-calculator.html">➤ Percentage Calculator</a>
+  <a href="age-calculator.html">➤ Age Calculator</a>
+  <a href="emi-calculator.html">➤ EMI Calculator (Coming Soon)</a>
+  <a href="zakat-calculator.html">➤ Zakat Calculator (Coming Soon)</a>
 </div>
 
-<div class="history-container">
-    <div class="history-list" id="historyList"></div>
-    <button onclick="clearHistory()">Clear History</button>
-</div>
-
-<footer>
-    <p>
-        <a href="about.html">About Us</a> |
-        <a href="contact.html">Contact Us</a> |
-        <a href="privacy.html">Privacy Policy</a>
-    </p>
-    <p>© 2025 hikball.store. All rights reserved.</p>
-</footer>
-
-<script>
-let display = document.getElementById("display");
-let historyListEl = document.getElementById("historyList");
-let memory = 0;
-
-function appendValue(v){ display.value += v; }
-function appendOperator(o){ display.value += " " + o + " "; }
-function clearDisplay(){ display.value = ""; }
-
-function toggleSign(){
-    if(display.value){
-        display.value = display.value.startsWith("-") ? display.value.slice(1) : "-" + display.value;
-    }
-}
-
-function calculatePercent(){
-    let v = parseFloat(display.value);
-    if(!isNaN(v)) display.value = v / 100;
-}
-
-function calculateResult(){
-    try{
-        let r = eval(display.value);
-        addHistory(display.value + " = " + r);
-        display.value = r;
-    }catch{ display.value = "Error"; }
-}
-
-function addHistory(t){
-    let d = document.createElement("div");
-    d.textContent = t;
-    historyListEl.prepend(d);
-    localStorage.setItem("calcHistory", historyListEl.innerHTML);
-}
-
-function clearHistory(){
-    historyListEl.innerHTML = "";
-    localStorage.removeItem("calcHistory");
-}
-
-function memoryAdd(){ memory += parseFloat(display.value) || 0; }
-function memorySub(){ memory -= parseFloat(display.value) || 0; }
-function memoryRecall(){ display.value += memory; }
-function memoryClear(){ memory = 0; }
-
-if(localStorage.getItem("calcHistory")){
-    historyListEl.innerHTML = localStorage.getItem("calcHistory");
-}
-
-function toggleDarkMode(){
-    document.body.classList.toggle("dark-mode");
-    localStorage.setItem("theme", document.body.classList.contains("dark-mode") ? "dark" : "light");
-}
-if(localStorage.getItem("theme") === "dark"){
-    document.body.classList.add("dark-mode");
-}
-
-document.addEventListener("keydown", e => {
-    if("0123456789".includes(e.key)) appendValue(e.key);
-    if(["+","-","*","/"].includes(e.key)) appendOperator(e.key);
-    if(e.key === "Enter") calculateResult();
-    if(e.key === "Escape") clearDisplay();
-    if(e.key === "Backspace") display.value = display.value.slice(0,-1);
-    if(e.key === "%") calculatePercent();
-});
-</script>
+<p>
+These tools help students, teachers, and professionals calculate values quickly and easily.
+More useful calculators will be added soon.
+</p>
 
 </body>
 </html>
