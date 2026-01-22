@@ -2,35 +2,36 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Simple Calculator – Free Online Calculators</title>
+  <title>Simple Calculator – Free Online Calculator</title>
 
-  <meta name="description" content="Free simple calculator to add, subtract, multiply and divide. Also access percentage and age calculators online.">
+  <meta name="description" content="Free simple calculator online. Perform addition, subtraction, multiplication, and division easily. Also access percentage and age calculators.">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
     body {
       font-family: Arial, sans-serif;
-      max-width: 800px;
+      max-width: 400px;
       margin: auto;
       padding: 20px;
-      line-height: 1.6;
-    }
-    h1 {
       text-align: center;
     }
-    input, button {
-      padding: 8px;
+    input {
       width: 100%;
-      max-width: 300px;
-      margin: 5px 0;
+      height: 50px;
+      font-size: 22px;
+      text-align: right;
+      margin-bottom: 10px;
     }
-    button {
+    .btn {
+      width: 22%;
+      height: 50px;
+      font-size: 18px;
+      margin: 1%;
       cursor: pointer;
     }
     .menu a {
       display: block;
-      font-size: 18px;
-      margin: 10px 0;
+      margin-top: 10px;
       text-decoration: none;
       color: #0066cc;
     }
@@ -41,44 +42,56 @@
 
 <h1>Simple Calculator</h1>
 
-<input type="number" id="num1" placeholder="Enter first number">
-<input type="number" id="num2" placeholder="Enter second number">
+<input type="text" id="display" disabled>
 
-<button onclick="add()">Add</button>
-<button onclick="subtract()">Subtract</button>
-<button onclick="multiply()">Multiply</button>
-<button onclick="divide()">Divide</button>
+<div>
+  <button class="btn" onclick="press('7')">7</button>
+  <button class="btn" onclick="press('8')">8</button>
+  <button class="btn" onclick="press('9')">9</button>
+  <button class="btn" onclick="press('/')">÷</button>
 
-<p id="calcResult"><b></b></p>
+  <button class="btn" onclick="press('4')">4</button>
+  <button class="btn" onclick="press('5')">5</button>
+  <button class="btn" onclick="press('6')">6</button>
+  <button class="btn" onclick="press('*')">×</button>
+
+  <button class="btn" onclick="press('1')">1</button>
+  <button class="btn" onclick="press('2')">2</button>
+  <button class="btn" onclick="press('3')">3</button>
+  <button class="btn" onclick="press('-')">−</button>
+
+  <button class="btn" onclick="press('0')">0</button>
+  <button class="btn" onclick="press('.')">.</button>
+  <button class="btn" onclick="calculate()">=</button>
+  <button class="btn" onclick="press('+')">+</button>
+
+  <button class="btn" onclick="clearDisplay()">C</button>
+</div>
 
 <script>
-function add() {
-  calcResult.innerHTML = "Result: " + (Number(num1.value) + Number(num2.value));
+function press(value) {
+  document.getElementById("display").value += value;
 }
-function subtract() {
-  calcResult.innerHTML = "Result: " + (Number(num1.value) - Number(num2.value));
-}
-function multiply() {
-  calcResult.innerHTML = "Result: " + (Number(num1.value) * Number(num2.value));
-}
-function divide() {
-  if (num2.value == 0) {
-    calcResult.innerHTML = "Cannot divide by zero";
-  } else {
-    calcResult.innerHTML = "Result: " + (Number(num1.value) / Number(num2.value));
+
+function calculate() {
+  try {
+    document.getElementById("display").value =
+      eval(document.getElementById("display").value);
+  } catch {
+    document.getElementById("display").value = "Error";
   }
+}
+
+function clearDisplay() {
+  document.getElementById("display").value = "";
 }
 </script>
 
 <hr>
 
-<h2>More Calculators</h2>
-
 <div class="menu">
   <a href="percentage-calculator.html">➤ Percentage Calculator</a>
   <a href="age-calculator.html">➤ Age Calculator</a>
-  <a href="emi-calculator.html">➤ EMI Calculator (Coming Soon)</a>
-  <a href="zakat-calculator.html">➤ Zakat Calculator (Coming Soon)</a>
 </div>
 
 </body>
