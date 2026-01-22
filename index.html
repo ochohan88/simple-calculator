@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Free Online Calculators – Simple Calculator Tools</title>
+  <title>Simple Calculator – Free Online Calculators</title>
 
-  <meta name="description" content="Free online calculators including Simple Calculator, Percentage Calculator, and Age Calculator. Easy, fast, and accurate tools.">
+  <meta name="description" content="Free simple calculator to add, subtract, multiply and divide. Also access percentage and age calculators online.">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
@@ -18,43 +18,68 @@
     h1 {
       text-align: center;
     }
+    input, button {
+      padding: 8px;
+      width: 100%;
+      max-width: 300px;
+      margin: 5px 0;
+    }
+    button {
+      cursor: pointer;
+    }
     .menu a {
       display: block;
-      font-size: 20px;
-      margin: 15px 0;
+      font-size: 18px;
+      margin: 10px 0;
       text-decoration: none;
       color: #0066cc;
-    }
-    .menu a:hover {
-      text-decoration: underline;
     }
   </style>
 </head>
 
 <body>
 
-<h1>Free Online Calculators</h1>
+<h1>Simple Calculator</h1>
 
-<p>Select a calculator below:</p>
+<input type="number" id="num1" placeholder="Enter first number">
+<input type="number" id="num2" placeholder="Enter second number">
+
+<button onclick="add()">Add</button>
+<button onclick="subtract()">Subtract</button>
+<button onclick="multiply()">Multiply</button>
+<button onclick="divide()">Divide</button>
+
+<p id="calcResult"><b></b></p>
+
+<script>
+function add() {
+  calcResult.innerHTML = "Result: " + (Number(num1.value) + Number(num2.value));
+}
+function subtract() {
+  calcResult.innerHTML = "Result: " + (Number(num1.value) - Number(num2.value));
+}
+function multiply() {
+  calcResult.innerHTML = "Result: " + (Number(num1.value) * Number(num2.value));
+}
+function divide() {
+  if (num2.value == 0) {
+    calcResult.innerHTML = "Cannot divide by zero";
+  } else {
+    calcResult.innerHTML = "Result: " + (Number(num1.value) / Number(num2.value));
+  }
+}
+</script>
+
+<hr>
+
+<h2>More Calculators</h2>
 
 <div class="menu">
-  <a href="/">➤ Simple Calculator</a>
   <a href="percentage-calculator.html">➤ Percentage Calculator</a>
   <a href="age-calculator.html">➤ Age Calculator</a>
   <a href="emi-calculator.html">➤ EMI Calculator (Coming Soon)</a>
   <a href="zakat-calculator.html">➤ Zakat Calculator (Coming Soon)</a>
 </div>
-
-<p>
-Our free calculator tools help students, teachers, and professionals calculate values quickly.
-All calculators are mobile-friendly and easy to use.
-</p>
-
-<hr>
-
-<p>
-© 2026 Free Online Calculators | All Rights Reserved
-</p>
 
 </body>
 </html>
