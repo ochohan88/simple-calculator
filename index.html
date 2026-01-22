@@ -2,96 +2,63 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Simple Calculator – Free Online Calculator</title>
-
-  <meta name="description" content="Free simple calculator online. Perform addition, subtraction, multiplication, and division easily. Also access percentage and age calculators.">
+  <title>Free Online Calculators – Simple Calculator Tools</title>
+  <meta name="description" content="Free online calculators including Simple Calculator, Percentage Calculator, Age Calculator, EMI Calculator, Zakat Calculator, Discount Calculator, and BMI Calculator. Easy, fast, and accurate tools.">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      max-width: 400px;
-      margin: auto;
-      padding: 20px;
-      text-align: center;
-    }
-    input {
-      width: 100%;
-      height: 50px;
-      font-size: 22px;
-      text-align: right;
-      margin-bottom: 10px;
-    }
-    .btn {
-      width: 22%;
-      height: 50px;
-      font-size: 18px;
-      margin: 1%;
-      cursor: pointer;
-    }
-    .menu a {
-      display: block;
-      margin-top: 10px;
-      text-decoration: none;
-      color: #0066cc;
-    }
+    body {font-family: Arial, sans-serif; max-width: 800px; margin:auto; padding:20px; text-align:center; line-height:1.6;}
+    h1 {text-align:center;}
+    input, button {padding:10px; margin:5px 0; width:100%; max-width:300px;}
+    button {cursor:pointer;}
+    .menu a {display:block; margin:10px 0; text-decoration:none; color:#0066cc;}
+    .menu a:hover {text-decoration:underline;}
   </style>
 </head>
-
 <body>
 
 <h1>Simple Calculator</h1>
-
 <input type="text" id="display" disabled>
-
 <div>
-  <button class="btn" onclick="press('7')">7</button>
-  <button class="btn" onclick="press('8')">8</button>
-  <button class="btn" onclick="press('9')">9</button>
-  <button class="btn" onclick="press('/')">÷</button>
+  <button onclick="press('7')">7</button>
+  <button onclick="press('8')">8</button>
+  <button onclick="press('9')">9</button>
+  <button onclick="press('/')">÷</button>
 
-  <button class="btn" onclick="press('4')">4</button>
-  <button class="btn" onclick="press('5')">5</button>
-  <button class="btn" onclick="press('6')">6</button>
-  <button class="btn" onclick="press('*')">×</button>
+  <button onclick="press('4')">4</button>
+  <button onclick="press('5')">5</button>
+  <button onclick="press('6')">6</button>
+  <button onclick="press('*')">×</button>
 
-  <button class="btn" onclick="press('1')">1</button>
-  <button class="btn" onclick="press('2')">2</button>
-  <button class="btn" onclick="press('3')">3</button>
-  <button class="btn" onclick="press('-')">−</button>
+  <button onclick="press('1')">1</button>
+  <button onclick="press('2')">2</button>
+  <button onclick="press('3')">3</button>
+  <button onclick="press('-')">−</button>
 
-  <button class="btn" onclick="press('0')">0</button>
-  <button class="btn" onclick="press('.')">.</button>
-  <button class="btn" onclick="calculate()">=</button>
-  <button class="btn" onclick="press('+')">+</button>
+  <button onclick="press('0')">0</button>
+  <button onclick="press('.')">.</button>
+  <button onclick="calculate()">=</button>
+  <button onclick="press('+')">+</button>
 
-  <button class="btn" onclick="clearDisplay()">C</button>
+  <button onclick="clearDisplay()">C</button>
 </div>
 
 <script>
-function press(value) {
-  document.getElementById("display").value += value;
-}
-
-function calculate() {
-  try {
-    document.getElementById("display").value =
-      eval(document.getElementById("display").value);
-  } catch {
-    document.getElementById("display").value = "Error";
-  }
-}
-
-function clearDisplay() {
-  document.getElementById("display").value = "";
-}
+function press(v){document.getElementById("display").value += v;}
+function calculate(){try{document.getElementById("display").value=eval(document.getElementById("display").value);}catch{document.getElementById("display").value="Error";}}
+function clearDisplay(){document.getElementById("display").value="";}
 </script>
 
 <hr>
-
+<h2>Other Calculators</h2>
 <div class="menu">
-  <a href="percentage-calculator.html">➤ Percentage Calculator</a>
-  <a href="age-calculator.html">➤ Age Calculator</a>
+  <a href="percentage-calculator.html">Percentage Calculator</a>
+  <a href="age-calculator.html">Age Calculator</a>
+  <a href="emi-calculator.html">EMI Calculator</a>
+  <a href="zakat-calculator.html">Zakat Calculator</a>
+  <a href="discount-calculator.html">Discount Calculator</a>
+  <a href="bmi-calculator.html">BMI Calculator</a>
+  <a href="about.html">About</a>
+  <a href="privacy.html">Privacy Policy</a>
 </div>
 
 </body>
