@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>EMI Calculator – Calculate Loan EMI Online</title>
+<meta name="description" content="Free EMI Calculator to calculate monthly loan EMI easily. Calculate home loan, car loan, and personal loan EMI online.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+
+<a href="/">Home</a> |
+<a href="percentage-calculator.html">Percentage Calculator</a> |
+<a href="age-calculator.html">Age Calculator</a> |
+<a href="emi-calculator.html">EMI Calculator</a>
+
+<h1>EMI Calculator</h1>
+
+<p>
+EMI calculator helps you calculate your monthly loan installment easily.
+This free EMI calculator is useful for home loan, car loan, and personal loan.
+</p>
+
+<h2>EMI Calculator Tool</h2>
+
+<input type="number" id="loan" placeholder="Loan Amount">
+<br><br>
+
+<input type="number" id="rate" placeholder="Interest Rate (%)">
+<br><br>
+
+<input type="number" id="tenure" placeholder="Loan Tenure (Years)">
+<br><br>
+
+<button onclick="calculateEMI()">Calculate EMI</button>
+
+<p id="emiResult"></p>
+
+<script>
+function calculateEMI() {
+  var P = document.getElementById("loan").value;
+  var R = document.getElementById("rate").value / 12 / 100;
+  var N = document.getElementById("tenure").value * 12;
+
+  if (P === "" || R === "" || N === "") {
+    document.getElementById("emiResult").innerHTML = "Please fill all fields";
+    return;
+  }
+
+  var EMI = (P * R * Math.pow(1 + R, N)) / (Math.pow(1 + R, N) - 1);
+  document.getElementById("emiResult").innerHTML =
+    "Monthly EMI: " + EMI.toFixed(2);
+}
+</script>
+
+<h2>How to Use EMI Calculator</h2>
+<ol>
+<li>Enter loan amount</li>
+<li>Enter interest rate</li>
+<li>Enter loan tenure</li>
+<li>Click calculate</li>
+</ol>
+
+<h2>Example</h2>
+<p>
+Loan Amount: 500,000 <br>
+Interest Rate: 10% <br>
+Tenure: 5 Years <br>
+Monthly EMI ≈ 10,624
+</p>
+
+<h2>FAQs</h2>
+<p><b>What is EMI?</b><br>EMI means Equated Monthly Installment.</p>
+<p><b>Is this EMI calculator free?</b><br>Yes, it is 100% free.</p>
+
+</body>
+</html>
