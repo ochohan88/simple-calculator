@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Zakat Calculator – Calculate Zakat Online</title>
+<meta name="description" content="Free Zakat Calculator to calculate Zakat easily according to Islamic rules. Simple online Zakat calculator.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+
+<a href="/">Home</a> |
+<a href="percentage-calculator.html">Percentage Calculator</a> |
+<a href="age-calculator.html">Age Calculator</a> |
+<a href="zakat-calculator.html">Zakat Calculator</a>
+
+<h1>Zakat Calculator</h1>
+
+<p>
+Zakat calculator helps Muslims calculate Zakat easily.
+Zakat is 2.5% of total savings above Nisab.
+</p>
+
+<h2>Zakat Calculator Tool</h2>
+
+<input type="number" id="wealth" placeholder="Total Savings Amount">
+<br><br>
+
+<button onclick="calculateZakat()">Calculate Zakat</button>
+
+<p id="zakatResult"></p>
+
+<script>
+function calculateZakat() {
+  var wealth = document.getElementById("wealth").value;
+
+  if (wealth === "") {
+    document.getElementById("zakatResult").innerHTML = "Please enter amount";
+    return;
+  }
+
+  var zakat = wealth * 0.025;
+  document.getElementById("zakatResult").innerHTML =
+    "Zakat Payable: " + zakat.toFixed(2);
+}
+</script>
+
+<h2>How to Use Zakat Calculator</h2>
+<ol>
+<li>Enter total savings</li>
+<li>Click calculate</li>
+<li>Get Zakat amount</li>
+</ol>
+
+<h2>Example</h2>
+<p>
+Total Savings: 100,000 <br>
+Zakat Payable: 2,500
+</p>
+
+<h2>FAQs</h2>
+<p><b>What is Zakat?</b><br>Zakat is an obligatory charity in Islam.</p>
+<p><b>How much Zakat to pay?</b><br>2.5% of total eligible savings.</p>
+
+</body>
+</html>
