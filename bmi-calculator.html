@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>BMI Calculator – Body Mass Index</title>
+<meta name="description" content="Free BMI calculator to calculate body mass index and check health status easily.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body{font-family:Arial;max-width:700px;margin:auto;padding:20px}
+input,button{padding:10px;width:100%;max-width:300px;margin:5px 0}
+.menu a{display:block;margin-top:8px}
+</style>
+</head>
+<body>
+
+<h1>BMI Calculator</h1>
+
+<p>Calculate your Body Mass Index (BMI) to understand your health category.</p>
+
+<input type="number" id="weight" placeholder="Weight (kg)">
+<input type="number" id="height" placeholder="Height (cm)">
+<button onclick="bmi()">Calculate BMI</button>
+
+<p id="out"></p>
+
+<script>
+function bmi(){
+  var w=weight.value;
+  var h=height.value/100;
+  if(w<=0||h<=0){out.innerHTML="Enter valid values";return;}
+  var b=(w/(h*h)).toFixed(2);
+  out.innerHTML="Your BMI is: "+b;
+}
+</script>
+
+<hr>
+<div class="menu">
+<a href="/">Home</a>
+<a href="percentage-calculator.html">Percentage</a>
+<a href="age-calculator.html">Age</a>
+<a href="emi-calculator.html">EMI</a>
+<a href="zakat-calculator.html">Zakat</a>
+<a href="discount-calculator.html">Discount</a>
+</div>
+
+</body>
+</html>
